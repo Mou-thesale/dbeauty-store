@@ -65,13 +65,11 @@
 </head>
 <body class="h-full text-slate-800 antialiased flex flex-col font-lao min-h-screen">
 
-    <!-- Toast Notification -->
     <div id="toast" class="fixed top-5 right-5 z-50 transform translate-x-full transition-transform duration-300 max-w-sm bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3">
         <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400 text-xl"></i>
         <span id="toast-msg" class="text-sm font-medium">ດຳເນີນການ ສຳເລັດ</span>
     </div>
 
-    <!-- Main Navigation Header -->
     <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-pink-100 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 md:h-20">
@@ -199,7 +197,6 @@
 
     </main>
 
-    <!-- FOOTER SECTION -->
     <footer class="bg-slate-900 text-slate-300 border-t border-slate-800 mt-12 py-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
             <div class="space-y-3">
@@ -354,8 +351,8 @@
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">ເມືອງ / ບ້ານ / ຈຸດນັດໝາຍ *</label>
-                            <input type="text" id="custCity" placeholder="ເມືອງຈັນທະບູລີ, ບ້ານໂພນທັນ" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-rose-200 focus:border-rose-500 outline-none">
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">ເມືອງ / ບ້ານ / ສາຂາຂົນສົ່ງ *</label>
+                            <input type="text" id="custCity" placeholder="ເມືອງຈັນທະບູລີ, ບ້ານໂພນທັນ ຫຼື ສາຂາທົ່ງປົ່ງ" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-rose-200 focus:border-rose-500 outline-none">
                         </div>
                     </div>
                     <div>
@@ -439,7 +436,7 @@
                                 <p class="text-[10px] text-slate-400">ຮອງຮັບ JPG, PNG, WEBP</p>
                             </div>
                             <div id="slipPreviewContainer" class="hidden flex items-center justify-center gap-3">
-                                <img id="slipPreviewImg" class="h-20 w-20 object-cover rounded-xl border border-rose-300 shadow">
+                                <img id="slipPreviewImg" src="" alt="Slip Preview" class="h-20 w-20 object-cover rounded-xl border border-rose-300 shadow">
                                 <div class="text-left">
                                     <span class="text-xs font-bold text-emerald-600 block">✓ ອັບໂຫຼດຮູບແລ້ວ</span>
                                     <span class="text-[11px] text-slate-500">ກົດປຸ່ມດ້ານລຸ່ມເພື່ອຢັ້ງຢືນອໍເດີ</span>
@@ -513,6 +510,56 @@
 
     <!-- Live Chat Window -->
     <div id="chatWindow" class="fixed bottom-22 right-5 z-50 hidden w-80 sm:w-96 bg-white rounded-3xl shadow-2xl border border-pink-100 overflow-hidden flex flex-col h-[450px]">
+        <div class="bg-gradient-to-r from-rose-500 to-pink-500 p-4 text-white flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center font-bold text-sm">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm leading-tight">ພະນັກງານ D-Beauty</h4>
+                    <span class="text-[10px] text-rose-100 flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span> ພ້ອມໃຫ້ບໍລິການ
+                    </span>
+                </div>
+            </div>
+            <button onclick="toggleChatWindow()" class="text-white/80 hover:text-white p-1">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div id="chatMessages" class="flex-1 p-4 overflow-y-auto space-y-3 bg-slate-50 text-xs">
+            <div class="flex gap-2">
+                <div class="w-7 h-7 rounded-full bg-rose-500 text-white flex items-center justify-center text-[10px] flex-shrink-0">
+                    <i class="fa-solid fa-gem"></i>
+                </div>
+                <div class="bg-white p-3 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm max-w-[80%] text-slate-700">
+                    ສະບາຍດີ! ຮ້ານ D-Beauty ຍິນດີຕ້ອນຮັບ. ທ່ານຕ້ອງການສອບຖາມຂໍ້ມູນສິນຄ້າ, ໄຊສ໌, ສີ ຫຼື ສະຖານະອໍເດີ ປະມານໃດແດ່? 😊
+                </div>
+            </div>
+        </div>
+
+        <div class="p-2 border-t border-slate-100 bg-white space-y-2">
+            <div class="flex gap-1 overflow-x-auto pb-1 scrollbar-none text-[10px]">
+                <button onclick="sendQuickMsg('ມີໄຊສ໌ຫຍັງແດ່?')" class="px-2.5 py-1 bg-slate-100 hover:bg-rose-50 hover:text-rose-600 text-slate-600 rounded-full whitespace-nowrap">
+                    ມີໄຊສ໌ຫຍັງແດ່?
+                </button>
+                <button onclick="sendQuickMsg('ຂໍເລກບັນຊີໂອນ')" class="px-2.5 py-1 bg-slate-100 hover:bg-rose-50 hover:text-rose-600 text-slate-600 rounded-full whitespace-nowrap">
+                    ຂໍເລກບັນຊີໂອນ
+                </button>
+                <button onclick="sendQuickMsg('ຕິດຕາມອໍເດີ')" class="px-2.5 py-1 bg-slate-100 hover:bg-rose-50 hover:text-rose-600 text-slate-600 rounded-full whitespace-nowrap">
+                    ຕິດຕາມອໍເດີ
+                </button>
+            </div>
+            <div class="flex items-center gap-2">
+                <input type="text" id="chatInput" onkeydown="if(event.key === 'Enter') sendChatMessage()" placeholder="ພິມຂໍ້ຄວາມສອບຖາມ..." 
+                    class="flex-1 px-3 py-2 bg-slate-100 rounded-xl text-xs outline-none focus:ring-1 focus:ring-rose-300">
+                <button onclick="sendChatMessage()" class="w-8 h-8 rounded-xl bg-rose-500 text-white flex items-center justify-center hover:bg-rose-600 transition-colors">
+                    <i class="fa-solid fa-paper-plane text-xs"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- ADMIN AUTHENTICATION (PASSWORD PROMPT) MODAL -->
     <div id="adminAuthModal" class="fixed inset-0 z-50 hidden bg-slate-900/70 backdrop-blur-md flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-sm w-full overflow-hidden shadow-2xl relative p-6 text-center">
@@ -671,7 +718,7 @@
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
                             <div>
                                 <label class="block text-xs font-semibold text-slate-600 mb-1">ລາຄາປົກກະຕິ (ກີບ) *</label>
                                 <input type="number" id="newProdPrice" required placeholder="150000" class="w-full px-3 py-2 border rounded-xl text-xs focus:ring-2 focus:ring-rose-200 outline-none">
@@ -679,6 +726,10 @@
                             <div>
                                 <label class="block text-xs font-semibold text-slate-600 mb-1">ສ່ວນຫຼຸດ % (ຖ້າມີ)</label>
                                 <input type="number" id="newProdDiscount" value="20" min="0" max="100" placeholder="20" class="w-full px-3 py-2 border rounded-xl text-xs focus:ring-2 focus:ring-rose-200 outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1">ຈຳນວນສະຕອກ (0 = ພຣີອໍເດີ້)</label>
+                                <input type="number" id="newProdStock" value="10" min="0" placeholder="10" class="w-full px-3 py-2 border rounded-xl text-xs focus:ring-2 focus:ring-rose-200 outline-none">
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold text-slate-600 mb-1">ໄຊສ໌ (ຂັ້ນດ້ວຍຈຳນວນ)</label>
@@ -720,6 +771,7 @@
                                     <th class="p-2.5">ລາຄາເດີມ</th>
                                     <th class="p-2.5">ສ່ວນຫຼຸດ</th>
                                     <th class="p-2.5">ລາຄາຂາຍ</th>
+                                    <th class="p-2.5">ສະຕອກ / ສະຖານະ</th>
                                     <th class="p-2.5 text-center">ຈັດການ</th>
                                 </tr>
                             </thead>
@@ -760,6 +812,7 @@
                 category: 'dresses',
                 price: 350000,
                 discountPercent: 20,
+                stock: 8,
                 rating: 4.9,
                 reviews: 42,
                 badge: 'SALE 20%',
@@ -778,6 +831,7 @@
                 category: 'sinh',
                 price: 280000,
                 discountPercent: 20,
+                stock: 0, // 0 Stock -> Pre-order
                 rating: 4.8,
                 reviews: 29,
                 badge: 'SALE 20%',
@@ -796,6 +850,7 @@
                 category: 'tops',
                 price: 145000,
                 discountPercent: 20,
+                stock: 5,
                 rating: 4.7,
                 reviews: 18,
                 badge: 'SALE 20%',
@@ -813,6 +868,7 @@
                 category: 'pants',
                 price: 160000,
                 discountPercent: 20,
+                stock: 12,
                 rating: 4.9,
                 reviews: 54,
                 badge: 'SALE 20%',
@@ -830,6 +886,7 @@
                 category: 'dresses',
                 price: 195000,
                 discountPercent: 20,
+                stock: 0,
                 rating: 4.6,
                 reviews: 21,
                 badge: 'SALE 20%',
@@ -847,6 +904,7 @@
                 category: 'tops',
                 price: 135000,
                 discountPercent: 20,
+                stock: 15,
                 rating: 4.8,
                 reviews: 33,
                 badge: 'SALE 20%',
@@ -864,6 +922,7 @@
                 category: 'pants',
                 price: 120000,
                 discountPercent: 20,
+                stock: 3,
                 rating: 4.5,
                 reviews: 15,
                 badge: 'SALE 20%',
@@ -881,6 +940,7 @@
                 category: 'accessories',
                 price: 95000,
                 discountPercent: 20,
+                stock: 20,
                 rating: 5.0,
                 reviews: 60,
                 badge: 'SALE 20%',
@@ -908,14 +968,13 @@
 
         // Shipping Providers
         const shippingProviders = [
-            { id: 'anousith', name: 'ຂົນສົ່ງ ອານຸສິດ (Anousith Express)', time: '1-2 ວັນ', price: 15000, icon: 'fa-truck-ramp-box' },
-            { id: 'houngaloun', name: 'ຂົນສົ່ງ ຮຸ່ງອາລຸນ (Houngaloun Logistics)', time: '1-2 ວັນ', price: 15000, icon: 'fa-truck-fast' },
-            { id: 'mixay', name: 'ຂົນສົ່ງ ມີໄຊ (Mixay Express)', time: '1-2 ວັນ', price: 15000, icon: 'fa-box' },
-            { id: 'unitel', name: 'ຂົນສົ່ງ ຢູນິເທວ (Unitel Express)', time: '1-2 ວັນ', price: 15000, icon: 'fa-paper-plane' },
-            { id: 'other', name: 'ຂົນສົ່ງອື່ນໆ (ຝາກຕາມສາຍ/ຕິດອໍເດີແຈ້ງພະນັກງານ)', time: '1-3 ວັນ', price: 15000, icon: 'fa-truck' }
+            { id: 'anousith', name: 'Anousith Express (ອະນຸສິດ ເອັກສະເພຣດ)', time: '1-2 ວັນ', price: 15000, icon: 'fa-truck-ramp-box' },
+            { id: 'houngaloun', name: 'Houngaloun Logistics (ຮຸ່ງອາລຸນ ໂລຈິສຕິກ)', time: '1-2 ວັນ', price: 15000, icon: 'fa-truck-fast' },
+            { id: 'mixay', name: 'Mixay Express (ມີໄຊ ເອັກສະເພຣດ)', time: '1-2 ວັນ', price: 15000, icon: 'fa-box' },
+            { id: 'unitel', name: 'Unitel Express (ຢູນິເທວ ເອັກສະເພຣດ)', time: '1-2 ວັນ', price: 15000, icon: 'fa-paper-plane' },
+            { id: 'other', name: 'ຂົນສົ່ງອື່ນໆ (ຝາກຕາມສາຍ / ຕິດອໍເດີແຈ້ງພະນັກງານ)', time: '1-3 ວັນ', price: 15000, icon: 'fa-truck' }
         ];
 
-        // GLOBAL APP STATE (single instance)
         let products = loadProductsFromStorage();
         let activeCategory = 'all';
         let cart = [];
@@ -997,7 +1056,6 @@
             const bankAccName = document.getElementById('bankAccountName');
             if (bankAccName) bankAccName.innerText = `${(storeSettings.name || 'D-Beauty').toUpperCase()} STORE (ຮ້ານ ${storeSettings.name || 'D-Beauty'})`;
 
-            // Update Facebook Links
             const fbUrl = storeSettings.facebookUrl || 'https://www.facebook.com/D23Beauty';
             const headerFb = document.getElementById('headerFbLink');
             if (headerFb) headerFb.href = fbUrl;
@@ -1014,7 +1072,6 @@
             const footerPhoneText = document.getElementById('footerPhoneText');
             if (footerPhoneText) footerPhoneText.innerText = storeSettings.phone || '+856 20 92 479 976';
 
-            // Populate Admin fields
             const inputName = document.getElementById('adminStoreNameInput');
             const inputPhone = document.getElementById('adminStorePhoneInput');
             const inputFb = document.getElementById('adminStoreFbInput');
@@ -1050,63 +1107,6 @@
             showToast('✅ ບັນທຶກຂໍ້ມູນ, Facebook ແລະ ໂລໂກ້ຮ້ານສຳເລັດ!');
         }
 
-        function saveStoreSettingsToStorage() {
-            localStorage.setItem('dbeauty_store_settings', JSON.stringify(storeSettings));
-            applyStoreBrandingUI();
-        }
-
-        function applyStoreBrandingUI() {
-            const nameEl = document.getElementById('headerStoreName');
-            if (nameEl) nameEl.innerText = storeSettings.name || 'D-Beauty';
-
-            const logoImg = document.getElementById('headerLogoImg');
-            const logoIcon = document.getElementById('headerLogoIcon');
-            if (logoImg && logoIcon) {
-                if (storeSettings.logoUrl) {
-                    logoImg.src = storeSettings.logoUrl;
-                    logoImg.classList.remove('hidden');
-                    logoIcon.classList.add('hidden');
-                } else {
-                    logoImg.classList.add('hidden');
-                    logoIcon.classList.remove('hidden');
-                }
-            }
-
-            const bankAccName = document.getElementById('bankAccountName');
-            if (bankAccName) bankAccName.innerText = `${(storeSettings.name || 'D-Beauty').toUpperCase()} STORE (ຮ້ານ ${storeSettings.name || 'D-Beauty'})`;
-
-            // Populate Admin fields
-            const inputName = document.getElementById('adminStoreNameInput');
-            const inputPhone = document.getElementById('adminStorePhoneInput');
-            const inputLogo = document.getElementById('adminStoreLogoInput');
-            if (inputName) inputName.value = storeSettings.name || 'D-Beauty';
-            if (inputPhone) inputPhone.value = storeSettings.phone || '+856 20 92 479 976';
-            if (inputLogo) inputLogo.value = storeSettings.logoUrl || '';
-        }
-
-        function saveStoreBrandingSettings() {
-            const name = document.getElementById('adminStoreNameInput').value.trim();
-            const phone = document.getElementById('adminStorePhoneInput').value.trim();
-            const logoUrl = document.getElementById('adminStoreLogoInput').value.trim();
-
-            if (!name) {
-                showToast('ກະລຸນາປ້ອນຊື່ຮ້ານ', false);
-                return;
-            }
-
-            const cleanPhone = phone.replace(/[^0-9]/g, '');
-
-            storeSettings = {
-                name: name,
-                phone: phone,
-                phoneClean: cleanPhone || '8562092479976',
-                logoUrl: logoUrl
-            };
-
-            saveStoreSettingsToStorage();
-            showToast('✅ ບັນທຶກຂໍ້ມູນ ແລະ ໂລໂກ້ຮ້ານສຳເລັດ!');
-        }
-
         function loadProductsFromStorage() {
             const saved = localStorage.getItem('champa_products_v3');
             if (saved) {
@@ -1121,6 +1121,10 @@
 
         function saveProductsToStorage() {
             localStorage.setItem('champa_products_v3', JSON.stringify(products));
+        }
+
+        function isPreOrder(product) {
+            return product.stock === undefined || product.stock === null || parseInt(product.stock) <= 0;
         }
 
         function getEffectivePrice(product) {
@@ -1198,13 +1202,22 @@
                 const isWish = wishlist.includes(p.id);
                 const finalPrice = getEffectivePrice(p);
                 const hasDiscount = (p.discountPercent || 0) > 0;
+                const preOrder = isPreOrder(p);
 
                 return `
                 <div class="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group relative">
                     
-                    ${hasDiscount ? `<span class="absolute top-3 left-3 z-10 bg-rose-600 text-white text-[10px] font-black px-2.5 py-1 rounded-full shadow">
-                        🔥 ຫຼຸດ ${p.discountPercent}%
-                    </span>` : (p.badge ? `<span class="absolute top-3 left-3 z-10 bg-amber-500 text-slate-900 text-[10px] font-bold px-2.5 py-1 rounded-full shadow">${p.badge}</span>` : '')}
+                    <div class="absolute top-3 left-3 z-10 flex flex-col items-start gap-1">
+                        ${preOrder ? `<span class="bg-amber-500 text-slate-900 text-[10px] font-black px-2.5 py-1 rounded-full shadow flex items-center gap-1">
+                            <i class="fa-solid fa-clock"></i> ຕ້ອງພຣີອໍເດີ້
+                        </span>` : `<span class="bg-emerald-600 text-white text-[10px] font-black px-2.5 py-1 rounded-full shadow flex items-center gap-1">
+                            <i class="fa-solid fa-check"></i> ພ້ອມສົ່ງ (${p.stock})
+                        </span>`}
+                        
+                        ${hasDiscount ? `<span class="bg-rose-600 text-white text-[10px] font-black px-2.5 py-1 rounded-full shadow">
+                            🔥 ຫຼຸດ ${p.discountPercent}%
+                        </span>` : ''}
+                    </div>
 
                     <button onclick="toggleWishlist('${p.id}')" class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-white/80 backdrop-blur-md flex items-center justify-center text-slate-400 hover:text-rose-500 transition-colors shadow">
                         <i class="fa-${isWish ? 'solid' : 'regular'} fa-heart ${isWish ? 'text-rose-500' : ''}"></i>
@@ -1236,8 +1249,8 @@
                                     <span class="text-rose-600 font-black text-sm sm:text-base">${formatKip(p.price)}</span>
                                 `}
                             </div>
-                            <button onclick="quickAddToCart('${p.id}')" class="w-9 h-9 rounded-2xl bg-rose-50 hover:bg-rose-500 text-rose-600 hover:text-white flex items-center justify-center transition-all shadow-sm">
-                                <i class="fa-solid fa-plus text-sm"></i>
+                            <button onclick="quickAddToCart('${p.id}')" class="w-9 h-9 rounded-2xl ${preOrder ? 'bg-amber-50 hover:bg-amber-500 text-amber-600' : 'bg-rose-50 hover:bg-rose-500 text-rose-600'} hover:text-white flex items-center justify-center transition-all shadow-sm" title="${preOrder ? 'ພຣີອໍເດີ້' : 'ເພີ່ມລົງຕະກ່າ'}">
+                                <i class="fa-solid ${preOrder ? 'fa-clock' : 'fa-plus'} text-sm"></i>
                             </button>
                         </div>
                     </div>
@@ -1261,6 +1274,7 @@
 
             const finalPrice = getEffectivePrice(p);
             const hasDiscount = (p.discountPercent || 0) > 0;
+            const preOrder = isPreOrder(p);
 
             const modalContent = document.getElementById('modalContent');
             modalContent.innerHTML = `
@@ -1273,8 +1287,16 @@
 
                 <div class="p-6 flex flex-col justify-between space-y-4">
                     <div>
-                        <span class="text-xs font-semibold text-rose-500 tracking-wider uppercase">${p.category}</span>
-                        <h2 class="text-xl font-bold text-slate-800 mt-1">${p.name}</h2>
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="text-xs font-semibold text-rose-500 tracking-wider uppercase">${p.category}</span>
+                            ${preOrder ? `<span class="px-3 py-1 bg-amber-100 text-amber-800 border border-amber-300 text-xs font-bold rounded-full flex items-center gap-1">
+                                <i class="fa-solid fa-clock"></i> ຕ້ອງໄດ້ພຣີອໍເດີ້ (Pre-Order)
+                            </span>` : `<span class="px-3 py-1 bg-emerald-100 text-emerald-800 border border-emerald-300 text-xs font-bold rounded-full flex items-center gap-1">
+                                <i class="fa-solid fa-circle-check"></i> ມີສິນຄ້າພ້ອມສົ່ງ (${p.stock} ຊິ້ນ)
+                            </span>`}
+                        </div>
+                        
+                        <h2 class="text-xl font-bold text-slate-800">${p.name}</h2>
                         
                         <div class="flex items-baseline gap-2 mt-2">
                             <span class="text-rose-600 font-black text-2xl">${formatKip(finalPrice)}</span>
@@ -1312,9 +1334,9 @@
                     </div>
 
                     <div class="pt-4 border-t border-slate-100 flex gap-3">
-                        <button onclick="addModalItemToCart()" class="flex-1 py-3 bg-rose-500 hover:bg-rose-600 text-white font-bold rounded-2xl shadow-lg shadow-rose-200 transition-all flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-cart-plus"></i>
-                            <span>ເພີ່ມລົງຕະກ່າ</span>
+                        <button onclick="addModalItemToCart()" class="flex-1 py-3 ${preOrder ? 'bg-amber-500 hover:bg-amber-600' : 'bg-rose-500 hover:bg-rose-600'} text-white font-bold rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid ${preOrder ? 'fa-clock' : 'fa-cart-plus'}"></i>
+                            <span>${preOrder ? 'ສັ່ງພຣີອໍເດີ້ລົງຕະກ່າ' : 'ເພີ່ມລົງຕະກ່າ'}</span>
                         </button>
                         <button onclick="buyNowModalItem()" class="px-5 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-2xl shadow-lg transition-all">
                             ຊື້ເລີຍ
@@ -1591,7 +1613,7 @@
             }
 
             const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-            const orderId = '#LAO-' + Math.floor(10000 + Math.random() * 90000);
+            const orderId = '#TS3-' + Math.floor(100000 + Math.random() * 900000);
             
             lastCreatedOrder = {
                 id: orderId,
@@ -1622,13 +1644,18 @@
 
         function sendOrderToWhatsApp() {
             if (!lastCreatedOrder) return;
-            const itemsText = lastCreatedOrder.items.map(i => `- ${i.name} (${i.size}, ${i.color}) x${i.qty}`).join('%0A');
-            const message = `ສະບາຍດີຮ້ານ ${storeSettings.name || 'D-Beauty'}! ຂໍຢັ້ງຢືນອໍເດີ:${lastCreatedOrder.id}%0A` +
-                            `ຊື່: ${lastCreatedOrder.customer}%0A` +
-                            `ເບີໂທ: ${lastCreatedOrder.phone}%0A` +
-                            `ຂົນສົ່ງ: ${lastCreatedOrder.shipping}%0A` +
-                            `ລາຍການ:%0A${itemsText}%0A` +
-                            `ຍອດລວມ: ${formatKip(lastCreatedOrder.total)}`;
+            const itemsText = lastCreatedOrder.items.map((i, idx) => `${idx + 1}.⁠ ⁠${i.name}%0A   🛒 x${i.qty} = ${formatKip(i.price * i.qty).replace(' ₭', '')} LAK`).join('%0A');
+            const message = `🛍️ *D-BEAUTY - ໃບສັ່ງຊື້ / PURCHASE ORDER*%0A` +
+                            `🧾 *Invoice ID:* ${lastCreatedOrder.id}%0A` +
+                            `--------------------------------------%0A` +
+                            `👤 *ຊື່ລູກຄ້າ / Name:* ${lastCreatedOrder.customer}%0A` +
+                            `📞 *ເບີໂທ / Phone:* ${lastCreatedOrder.phone}%0A` +
+                            `🚚 *ບໍລິສັດຂົນສົ່ງ / Express:* ${lastCreatedOrder.shipping}%0A` +
+                            `📍 *ສາຂາ / Branch:* ${lastCreatedOrder.city} (${lastCreatedOrder.province})%0A%0A` +
+                            `📦 *ລາຍການສິນຄ້າ / Item List:*%0A${itemsText}%0A` +
+                            `--------------------------------------%0A` +
+                            `💰 *ລາຄາລວມທັງໝົດ / Total:* ${formatKip(lastCreatedOrder.total).replace(' ₭', '')} LAK%0A%0A` +
+                            `📌 *ໝາຍເຫດ:* ໄດ້ໂອນເງິນຜ່ານ BCEL One ແລ້ວ/ກະລຸນາກວດເບິ່ງຮູບໃບບິນໂອນເງິນທີ່ແນບມານີ້.`;
             
             const targetPhone = storeSettings.phoneClean || '8562092479976';
             window.open(`https://wa.me/${targetPhone}?text=${message}`, '_blank');
@@ -1661,9 +1688,9 @@
                 if (txt.includes('ໄຊສ໌')) {
                     appendBotChatMsg('ທາງຮ້ານມີໄຊສ໌ S, M, L, XL ແລະ Free Size ສຳລັບສິ້ນລາວເດີ! ທ່ານສາມາດເລືອກກວດເບິ່ງໃນໜ້າສິນຄ້າໄດ້ເລີຍ.');
                 } else if (txt.includes('ຕິດຕາມ')) {
-                    appendBotChatMsg('ກະລຸນາແຈ້ງ ເລກອໍເດີ (ເຊັ່ນ #LAO-XXXXX) ຫຼື ເບີໂທ ເພື່ອໃຫ້ພະນັກງານກວດສອບສະຖານະຂົນສົ່ງໃຫ້ເດີ.');
+                    appendBotChatMsg('ກະລຸນາແຈ້ງ ເລກອໍເດີ (ເຊັ່ນ #TS3-XXXXXX) ຫຼື ເບີໂທ ເພື່ອໃຫ້ພະນັກງານກວດສອບສະຖານະຂົນສົ່ງໃຫ້ເດີ.');
                 } else {
-                    appendBotChatMsg('ເລກບັນຊີ BCEL: 010-12-0000-98471 (ຊື່ບັນຊີ: CHAMPA BLOOM STORE) ເດີ 🙏');
+                    appendBotChatMsg('ເລກບັນຊີ BCEL: 010-12-0000-98471 (ຊື່ບັນຊີ: D-BEAUTY STORE) ເດີ 🙏');
                 }
             }, 800);
         }
@@ -1695,9 +1722,6 @@
             chatMsgs.scrollTop = chatMsgs.scrollHeight;
         }
 
-        // ==========================================
-        // ADMIN SECURITY & AUTHENTICATION FUNCTIONS
-        // ==========================================
         function openAdminModal() {
             if (isAdminAuthenticated) {
                 renderAdminTable();
@@ -1783,6 +1807,7 @@
             const cat = document.getElementById('newProdCat').value;
             const price = parseFloat(document.getElementById('newProdPrice').value) || 0;
             const discount = parseFloat(document.getElementById('newProdDiscount').value) || 0;
+            const stock = parseInt(document.getElementById('newProdStock').value) || 0;
             const sizesRaw = document.getElementById('newProdSizes').value.trim();
             const imgUrl = document.getElementById('newProdImg').value.trim();
             const desc = document.getElementById('newProdDesc').value.trim();
@@ -1796,9 +1821,10 @@
                 category: cat,
                 price: price,
                 discountPercent: discount,
+                stock: stock,
                 rating: 5.0,
                 reviews: 1,
-                badge: discount > 0 ? `SALE ${discount}%` : 'NEW',
+                badge: stock <= 0 ? 'ພຣີອໍເດີ້' : (discount > 0 ? `SALE ${discount}%` : 'NEW'),
                 images: [imgUrl],
                 colors: ['#000000', '#FFFFFF'],
                 colorNames: ['ດຳ', 'ຂາວ'],
@@ -1813,6 +1839,17 @@
             renderProducts();
             renderAdminTable();
             showToast('ເພີ່ມສິນຄ້າໃໝ່ສຳເລັດແລ້ວ!');
+        }
+
+        function updateProductStock(id, newStock) {
+            const prod = products.find(p => p.id === id);
+            if (prod) {
+                prod.stock = parseInt(newStock) || 0;
+                saveProductsToStorage();
+                renderProducts();
+                renderAdminTable();
+                showToast(prod.stock <= 0 ? `ປ່ຽນສະຖານະ ${prod.name} ເປັນ "ຕ້ອງພຣີອໍເດີ້"` : `ອັບເດດສະຕອກເປັນ ${prod.stock} ຊິ້ນ`);
+            }
         }
 
         function deleteProduct(id) {
@@ -1830,6 +1867,9 @@
 
             table.innerHTML = products.map(p => {
                 const effPrice = getEffectivePrice(p);
+                const preOrder = isPreOrder(p);
+                const stockVal = p.stock !== undefined ? p.stock : 0;
+
                 return `
                 <tr>
                     <td class="p-2.5">
@@ -1839,6 +1879,12 @@
                     <td class="p-2.5">${formatKip(p.price)}</td>
                     <td class="p-2.5 text-rose-600 font-bold">${p.discountPercent || 0}%</td>
                     <td class="p-2.5 font-bold text-emerald-600">${formatKip(effPrice)}</td>
+                    <td class="p-2.5">
+                        <div class="flex items-center gap-1.5">
+                            <input type="number" min="0" value="${stockVal}" onchange="updateProductStock('${p.id}', this.value)" class="w-16 px-2 py-1 border rounded text-xs font-bold text-center outline-none focus:ring-1 focus:ring-amber-400">
+                            ${preOrder ? `<span class="px-2 py-0.5 bg-amber-100 text-amber-800 text-[10px] font-bold rounded-md whitespace-nowrap">⏳ ຕ້ອງພຣີອໍເດີ້</span>` : `<span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] font-bold rounded-md whitespace-nowrap">✓ ມີສະຕອກ</span>`}
+                        </div>
+                    </td>
                     <td class="p-2.5 text-center">
                         <button onclick="deleteProduct('${p.id}')" class="px-2 py-1 bg-rose-100 hover:bg-rose-200 text-rose-700 rounded text-[10px] font-bold">
                             <i class="fa-solid fa-trash"></i> ລົບ
